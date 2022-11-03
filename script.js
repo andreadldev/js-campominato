@@ -3,10 +3,6 @@ function generateNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-function bombFound() {
-
-}
-
 function createGrid(totalSquares, squareClass) {
     function createSquare(squareClass) {
         const div = document.createElement('div');
@@ -22,10 +18,14 @@ function createGrid(totalSquares, squareClass) {
                 (bombs.includes(i)) {
                 this.classList.add('active-bomb');
                 stopGame = true;
+                scoreDisplay.innerHTML = `Hai perso col punteggio di ${score}. Inizia una nuova partita.`
             }
             else if (stopGame === false)
                 {this.classList.add('active');
-                console.log(i);}     
+                score++;
+                scoreDisplay.innerHTML = `Punteggio: ${score}`;
+                console.log(score); 
+            }  
         })
         element.innerHTML = i;
         grid.append(element);
@@ -36,19 +36,21 @@ function createGrid(totalSquares, squareClass) {
         bombs.push(generateNumber(1, totalSquares));
     }
     console.log(bombs);
-
-    function merda() {
-        
-    }
 }
 // =====================================
 
 const grid = document.getElementById("grid");
 const playBtn = document.getElementById("playBtn");
 const difficulty = document.getElementById("difficulty");
+const scoreDisplay = document.getElementById("score");
 let stopGame = false;
+let score = 0;
 
 playBtn.addEventListener('click', function() {
+    score = 0;
+    scoreDisplay.innerHTML = `Punteggio: ${score}`;
+    stopGame = false;
+
     if (difficulty.value === "easy") {
         grid.replaceChildren();
         createGrid(100, "square-easy");
@@ -64,7 +66,3 @@ playBtn.addEventListener('click', function() {
         createGrid(49, "square-hard");
     }
 });
-
-if (stopGame === true) {
-    playBtn.setAttribute('disabled', 'disabled');
-}
