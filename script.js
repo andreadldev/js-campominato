@@ -18,9 +18,11 @@ function createGrid(totalSquares, squareClass) {
                 (bombs.includes(i)) {
                 this.classList.add('active-bomb');
                 stopGame = true;
-                scoreDisplay.innerHTML = `Hai perso col punteggio di ${score}. Inizia una nuova partita.`
+                scoreDisplay.innerHTML = `Hai perso col punteggio di ${score}. Inizia una nuova partita.`;
+                console.log(bombs);
+
             }
-            else if (stopGame === false)
+            else if (stopGame === false && !this.classList.contains('active'))
                 {this.classList.add('active');
                 score++;
                 scoreDisplay.innerHTML = `Punteggio: ${score}`;
