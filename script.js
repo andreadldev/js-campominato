@@ -1,12 +1,12 @@
 // =============FUNCTIONS=============
-function createSquare(squareClass) {
-    const div = document.createElement('div');
-    div.classList.add("square");
-    div.classList.add(squareClass);
-    return div;
-}
-
 function createGrid(totalSquares, squareClass) {
+    function createSquare(squareClass) {
+        const div = document.createElement('div');
+        div.classList.add("square");
+        div.classList.add(squareClass);
+        return div;
+    }
+    
     for (let i = 1; i <= totalSquares; i++) {
         let element = createSquare(squareClass);
         element.addEventListener('click', function () {
