@@ -17,12 +17,13 @@ function createGrid(totalSquares, squareClass) {
 
     for (let i = 1; i <= totalSquares; i++) {
         let element = createSquare(squareClass);
-        element.addEventListener('click', function () {
+        element.addEventListener('click', function() {
             if 
                 (bombs.includes(i)) {
                 this.classList.add('active-bomb');
+                stopGame = true;
             }
-            else 
+            else if (stopGame === false)
                 {this.classList.add('active');
                 console.log(i);}     
         })
@@ -35,12 +36,17 @@ function createGrid(totalSquares, squareClass) {
         bombs.push(generateNumber(1, totalSquares));
     }
     console.log(bombs);
+
+    function merda() {
+        
+    }
 }
 // =====================================
 
 const grid = document.getElementById("grid");
 const playBtn = document.getElementById("playBtn");
 const difficulty = document.getElementById("difficulty");
+let stopGame = false;
 
 playBtn.addEventListener('click', function() {
     if (difficulty.value === "easy") {
@@ -58,3 +64,7 @@ playBtn.addEventListener('click', function() {
         createGrid(49, "square-hard");
     }
 });
+
+if (stopGame === true) {
+    playBtn.setAttribute('disabled', 'disabled');
+}
