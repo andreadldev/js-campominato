@@ -1,7 +1,4 @@
-const grid = document.getElementById("grid");
-const playBtn = document.getElementById("playBtn");
-const difficulty = document.getElementById("difficulty");
-
+// =============FUNCTIONS=============
 function createSquare(squareClass) {
     const div = document.createElement('div');
     div.classList.add("square");
@@ -9,44 +6,37 @@ function createSquare(squareClass) {
     return div;
 }
 
+function createGrid(totalSquares, squareClass) {
+    for (let i = 1; i <= totalSquares; i++) {
+        let element = createSquare(squareClass);
+        element.addEventListener('click', function () {
+            this.classList.toggle('active');
+            console.log(i);
+        })
+        element.innerHTML = i;
+        grid.append(element);
+    }
+}
+// =====================================
+
+const grid = document.getElementById("grid");
+const playBtn = document.getElementById("playBtn");
+const difficulty = document.getElementById("difficulty");
+
 playBtn.addEventListener('click', function() {
     if (difficulty.value === "easy") {
         grid.replaceChildren();
-        for (let i = 1; i <= 100; i++) {
-            let element = createSquare("square-easy");
-            element.addEventListener('click', function () {
-                this.classList.toggle('active');
-                console.log(i);
-            })
-            element.innerHTML = i;
-            grid.append(element);
-        }
+        createGrid(100, "square-easy");
     }
 
     else if (difficulty.value === "medium") {   
         grid.replaceChildren();
-        for (let i = 1; i <= 81; i++) {
-            let element = createSquare("square-medium");
-            element.addEventListener('click', function () {
-                this.classList.toggle('active');
-                console.log(i);
-            })
-            element.innerHTML = i;
-            grid.append(element);
-        }
+        createGrid(81, "square-medium");
     }
 
     else if (difficulty.value === "hard") {      
         grid.replaceChildren();
-        for (let i = 1; i <= 49; i++) {
-            let element = createSquare("square-hard");
-            element.addEventListener('click', function () {
-                this.classList.toggle('active');
-                console.log(i);
-            })
-            element.innerHTML = i;
-            grid.append(element);
-        }
+        createGrid(49, "square-hard");
     }
 });
 
