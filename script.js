@@ -1,4 +1,12 @@
 // =============FUNCTIONS=============
+function generateNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+function bombFound() {
+
+}
+
 function createGrid(totalSquares, squareClass) {
     function createSquare(squareClass) {
         const div = document.createElement('div');
@@ -6,16 +14,27 @@ function createGrid(totalSquares, squareClass) {
         div.classList.add(squareClass);
         return div;
     }
-    
+
     for (let i = 1; i <= totalSquares; i++) {
         let element = createSquare(squareClass);
         element.addEventListener('click', function () {
-            this.classList.toggle('active');
-            console.log(i);
+            if 
+                (bombs.includes(i)) {
+                this.classList.add('active-bomb');
+            }
+            else 
+                {this.classList.add('active');
+                console.log(i);}     
         })
         element.innerHTML = i;
         grid.append(element);
     }
+
+    let bombs = [];
+    while (bombs.length < 16) {
+        bombs.push(generateNumber(1, totalSquares));
+    }
+    console.log(bombs);
 }
 // =====================================
 
@@ -39,4 +58,3 @@ playBtn.addEventListener('click', function() {
         createGrid(49, "square-hard");
     }
 });
-

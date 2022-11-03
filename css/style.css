@@ -126,6 +126,10 @@ main {
     background-color:dodgerblue;
 }
 
+.active-bomb {
+    background-color: red;
+}
+
 /* ------------------FOOTER------------------ */
 footer {
     padding: 15px;
