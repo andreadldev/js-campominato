@@ -135,10 +135,8 @@ main {
 }
 
 #score {
-    position: absolute;
     bottom: 50px;
-    left: 50%;
-    transform: translatex(-50%);
+    margin: auto;
     font-size: 1.5rem;
 }
 
